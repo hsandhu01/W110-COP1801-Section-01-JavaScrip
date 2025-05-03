@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harry's Tip Calculator</title>
+</head>
+<body>
+  <h1>Harry's Tip Calculator</h1>
+  <script>
+    function validateServiceQuality(quality) {
+      const validQualities = ["great", "ok", "poor"];
+      return validQualities.includes(quality.toLowerCase());
+    }
+
+    function validateServiceAmount(amount) {
+      return amount >= 5.0 && amount <= 500.0;
+    }
+
+    function calculateTip(amount, quality) {
+      let tipRate;
+      switch (quality.toLowerCase()) {
+        case "great":
+          tipRate = 0.20;
+          break;
+        case "ok":
+          tipRate = 0.15;
+          break;
+        case "poor":
+          tipRate = 0.10;
+          break;
+      }
+      return amount * tipRate;
+    }
+
+    const serviceAmount = parseFloat(prompt("enter the dollar amount of service (between $5.00 and $500.00):"));
+    if (!validateServiceAmount(serviceAmount)) {
+      alert("this service amount is not valid. Enter a value between $5.00 and $500.00.");
+    } else {
+      const serviceQuality = prompt("enter your service quality (great, ok, or poor):");
+      if (!validateServiceQuality(serviceQuality)) {
+        alert("this service quality isn't valid. Enter 'great', 'ok', or 'poor'.");
+      } else {
+        const tip = calculateTip(serviceAmount, serviceQuality);
+        alert(`For a ${serviceQuality} service on $${serviceAmount.toFixed(2)}, the recommended tip is $${tip.toFixed(2)}.`);
+      }
+    }
+  </script>
+</body>
+</html>
