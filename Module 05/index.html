@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Dog Object Assignment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .output {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Harry's Fictional Dog Buttons</h1>
+  <div class="output" id="output"></div>
+
+  <script>
+    // my part 1 object literal myDog
+    const myDog = {
+      name: "Buttons",
+      breed: "German Shepherd",
+      show: "Animaniacs",
+      role: "takes care of Mindy",
+      mySound: "I care a lot about Mindy, and I’m always putting her safety first!",
+    };
+
+    const part1 = `Hello, my name is ${myDog.name}. I am a ${myDog.breed} from the show "${myDog.show}". I ${myDog.role}. ${myDog.mySound}`;
+
+    // this is my part 2 constructor function myDogConst
+    function Dog(name, breed, show, role, mySound, canTalk) {
+      this.name = name;
+      this.breed = breed;
+      this.show = show;
+      this.role = role;
+      this.mySound = mySound;
+      this.canTalk = canTalk;
+
+      this.myGreeting = function () {
+        return `Hi, I'm ${this.name}, a ${this.breed} from the show "${this.show}". I ${this.role}. A fact about me is... ${this.mySound} Talking ability: ${this.canTalk ? "Yes" : "No"}.`;
+      };
+    }
+
+    const myDogConst = new Dog(
+      "Buttons",
+      "German Shepherd",
+      "Animaniacs",
+      "protect Mindy through every chaotic adventure",
+      "Even though I never say much, you can always count on me.",
+      false
+    );
+
+    // my output
+    document.getElementById("output").innerHTML = `
+      <p><strong>Object Literal:</strong><br>${part1}</p>
+      <p><strong>Constructor Function Output:</strong><br>${myDogConst.myGreeting()}</p>
+    `;
+  </script>
+
+</body>
+</html>
