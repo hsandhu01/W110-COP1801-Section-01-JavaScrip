@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Module 06 Assignment - Specific Tasks</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f0f0f5;
+      color: #333;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    pre {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Harry's Dogs</h1>
+<div class="box" id="output"></div>
+
+<script>
+  // my constructor function
+  function Dog(name, breed, show, role, mySound, canTalk) {
+    this.name = name;
+    this.breed = breed;
+    this.show = show;
+    this.role = role;
+    this.mySound = mySound;
+    this.canTalk = canTalk;
+
+    this.myGreeting = function () {
+      let talkStatus = this.canTalk ? "I can talk!" : "I cannot talk.";
+      return `Hi, I'm ${this.name}, a ${this.breed} from "${this.show}". I ${this.role}. Fun fact: ${this.mySound} ${talkStatus}`;
+    };
+  }
+
+  // multiple dog objects created
+  const dog1 = new Dog(
+    "Buttons",
+    "German Shepherd",
+    "Animaniacs",
+    "protect Mindy through chaotic adventures",
+    "I’m always alert nothing gets past me when it comes to Mindy’s safety!",
+    false
+  );
+
+  const dog2 = new Dog(
+    "Brian",
+    "White Labrador Retriever",
+    "Family Guy",
+    "act as the family's sarcastic intellectual",
+    "I sound like a smart person stuck in a dog's body.",
+    true
+  );
+
+  const dogs = {
+    Buttons: dog1,
+    Brian: dog2,
+  };
+
+  // user prompted to pick dog
+  const userChoice = prompt("Type a dog's name to learn more about Buttons or Brian:");
+
+  // displays selected dog's info or error
+  let outputHTML = "<h2>Selected Dog Profile</h2>";
+  if (dogs[userChoice]) {
+    const selectedDog = dogs[userChoice];
+    outputHTML += `<h3>${userChoice}</h3><pre>`;
+    for (let key in selectedDog) {
+      if (typeof selectedDog[key] !== "function") {
+        outputHTML += `${key}: ${selectedDog[key]}\n`;
+      }
+    }
+    outputHTML += `</pre>`;
+    outputHTML += `<p><strong>Greeting:</strong> ${selectedDog.myGreeting()}</p>`;
+  } else {
+    outputHTML += `<p style="color:red;"><strong>Error:</strong> Sorry, the dog "${userChoice}" does not exist in our database.</p>`;
+  }
+
+  document.getElementById("output").innerHTML = outputHTML;
+</script>
+
+</body>
+</html>
